@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 1200px;
+}
+
+.lib-container {
+  display: flex;
+  min-height: 80dvh;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.lib {
+  display: grid;
+  width: 100%;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+
+.book-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  img {
+    max-height: 300px;
+    align-self: baseline;
+    border-radius: 0.5em;
+  }
+}
+
+.delete-book {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-weight: 700;
+  font-size: large;
+  color: rgba(0, 0, 0, 0.383);
+  box-sizing: border-box;
+  padding: 0.25em 0.5em;
+  margin: 0.5em;
+  border: 2px solid rgba(0, 0, 0, 0.383);
+  border-radius: 0.5rem;
+  &:hover {
+    color: black;
+    border: 2px solid black;
+    cursor: pointer;
+    transition-duration: 0.3s;
+  }
+}
+
+.about {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.description.expanded {
+  -webkit-line-clamp: unset;
+  line-clamp: none;
+  overflow: visible;
+  white-space: normal;
+}

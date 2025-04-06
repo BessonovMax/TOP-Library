@@ -1,4 +1,7 @@
 const myLibrary = [];
+const bookCard = document.createElement("div");
+
+bookCard.classList.add("book-card");
 
 function Book(title, author, pages, read) {
   if (!new.target) {
@@ -10,7 +13,7 @@ function Book(title, author, pages, read) {
     (this.read = read),
     (this.id = crypto.randomUUID()),
     (this.info = () => {
-      return [this.title, this.author, `${this.pages} pages`, this.read];
+      return [this.title, this.author, this.pages, this.read];
     });
 }
 
