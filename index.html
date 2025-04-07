@@ -7,14 +7,62 @@
     <link rel="stylesheet" href="main.css" />
   </head>
   <body>
+    <header class="header-wrap">
+      <div class="lib-header">
+        <h1>My Library</h1>
+        <button class="add-book">New Book</button>
+      </div>
+    </header>
     <main>
       <div class="lib-container">
-        <div class="lib-header">
-          <h1>My Library</h1>
-        </div>
         <div class="lib"></div>
       </div>
     </main>
+    <section class="book-form-container">
+      <div class="close-form">Close</div>
+      <form class="book-form" action="#">
+        <h2 class="form-header">New book</h2>
+        <div class="form-section">
+          <label for="title">Book's title:</label
+          ><input type="text" name="title" id="title" required />
+        </div>
+        <div class="form-section">
+          <label for="author">Book's author:</label
+          ><input type="text" name="author" id="author" required />
+        </div>
+        <div class="form-section">
+          <label for="pages">Number of pages:</label
+          ><input type="number" name="pages" id="pages" required />
+        </div>
+        <div class="form-section">
+          <label for="description">Book's description:</label>
+          <textarea
+            type="text"
+            name="description"
+            id="description"
+            required
+          ></textarea>
+        </div>
+        <div class="form-section">
+          <label>Have you read the book?</label>
+          <div class="radio-container">
+            <label class="radio-label">
+              <input type="radio" name="readStatus" value="read" required />
+              Read
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="readStatus" value="not_read" required />
+              Not Read
+            </label>
+          </div>
+        </div>
+        <div class="form-section">
+          <label for="cover">Upload a book's cover:</label>
+          <input type="file" name="cover" id="cover" accept="image/*" />
+        </div>
+        <button class="add-book" type="submit">Add book</button>
+      </form>
+    </section>
     <script src="main.js"></script>
   </body>
 </html>

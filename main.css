@@ -10,10 +10,49 @@ body {
   color: #333;
   line-height: 1.6;
   min-height: 100dvh;
-  font-size: large;
+  /* font-size: large; */
   display: flex;
+  gap: 2em;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.header-wrap {
+  background-color: rgb(25, 99, 164);
+  color: #f4f4f4;
+  padding: 1.25em;
+  width: 100%;
+}
+
+.lib-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  h1 {
+    font-size: 2.5rem;
+  }
+}
+
+.add-book {
+  font-size: larger;
+  color: #333;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  background-color: #eeecec;
+  border: 1px solid #333;
+  max-height: fit-content;
+  border-radius: 0.5rem;
+  &:hover {
+    background-color: white;
+    color: black;
+    transition-duration: 0.3s;
+  }
 }
 
 main {
@@ -52,9 +91,14 @@ main {
   justify-content: center;
   position: relative;
   img {
+    padding: 0.25rem;
     grid-area: img;
+    min-width: 130px;
+    max-width: 160px;
     justify-self: center;
-    max-height: 200px;
+    align-self: baseline;
+    height: 200px;
+    border: 2px solid rgb(25, 99, 164);
     border-radius: 0.5em;
   }
 }
@@ -71,9 +115,8 @@ main {
   font-weight: 700;
   font-size: large;
   color: rgba(0, 0, 0, 0.383);
-  box-sizing: border-box;
   padding: 0.25em 0.5em;
-  margin: 0.5em;
+  margin: 1em;
   border: 2px solid rgba(0, 0, 0, 0.383);
   border-radius: 0.5rem;
   &:hover {
@@ -89,11 +132,14 @@ main {
   padding: 0 1em;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 0.5em;
+  min-height: 180px;
 }
 
 .description {
   display: -webkit-box;
+  word-break: break-word;
   -webkit-line-clamp: 3;
   line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -120,22 +166,127 @@ main {
   cursor: pointer;
 }
 
+.close-form {
+  position: absolute;
+  top: 2.5%;
+  left: 4%;
+  background-color: #d9d8d8;
+  color: #333;
+  font-size: large;
+  padding: 0.25em 0.5em;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  &:hover {
+    color: black;
+    background-color: white;
+    transition-timing-function: ease-out;
+    transition-duration: 0.2s;
+  }
+}
+
+.book-form-container {
+  position: absolute;
+  width: 35%;
+  min-height: 100%;
+  top: 0;
+  right: 0;
+  border-left: 2px solid #f4f4f4;
+  background-color: rgba(17, 67, 111, 0.695);
+  color: #f4f4f4;
+  backdrop-filter: blur(10px);
+  z-index: 2;
+  transform: translateX(100%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.open-book-container {
+  transform: translateX(0);
+}
+
+.book-form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1em;
+  gap: 1.5rem;
+  width: 60%;
+  margin: 0 auto;
+  align-items: start;
+  font-size: larger;
+  h2 {
+    font-size: 2.25rem;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.form-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+label {
+  font-size: larger;
+}
+
+.radio-container {
+  display: flex;
+  justify-content: space-around;
+}
+.radio-label {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+}
+input[type="radio"] {
+  width: 2em;
+  height: 2em;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+  min-width: 100%;
+  min-height: 2rem;
+  font-size: large;
+  padding: 0.25em;
+  border-radius: 0.25rem;
+  border: none;
+}
+
+#cover {
+  background-color: #424242;
+}
+
+textarea {
+  font-size: large;
+  padding: 0.25em;
+  min-height: 5rem;
+  border-radius: 0.25rem;
+  resize: none;
+}
+
+@media (max-width: 1400px) {
+  .book-form-container {
+    width: 50%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .book-form-container {
+    width: 60%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .book-form-container {
+    width: 70%;
+  }
+}
+
 @media (max-width: 600px) {
-  .lib-container {
-    gap: 1rem;
-  }
-  .lib {
-    gap: 0.5rem;
-  }
-  .book-card {
-    flex-wrap: wrap;
-  }
-  .book-card {
-    padding: 0.5em;
-  }
-  .delete-book {
-    font-size: medium;
-    padding: 0.25em;
-    margin: 0.25em;
+  .book-form-container {
+    width: 100%;
   }
 }
