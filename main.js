@@ -1,6 +1,7 @@
 import { testBooks } from "./testbooks.js";
+import { displayBook } from "./displayBook.js";
 const myLibrary = [];
-const libary = document.querySelector(".lib");
+const library = document.querySelector(".lib");
 const addBookBtn = document.querySelector(".add-book");
 const bookFormContainer = document.querySelector(".book-form-container");
 const bookForm = document.querySelector(".book-form");
@@ -14,83 +15,9 @@ closeForm.addEventListener("click", () => {
   bookFormContainer.classList.remove("open-book-container");
 });
 
-function displayBook(book) {
-  const bookCard = document.createElement("div");
-  bookCard.className = "book-card";
-  bookCard.id = book.id;
-
-  const bookImg = document.createElement("img");
-  bookImg.src = book.imgSrc;
-  bookImg.alt = book.title;
-
-  const aboutBook = document.createElement("div");
-  aboutBook.className = "about";
-
-  const titleEl = document.createElement("h2");
-  titleEl.className = "title";
-  titleEl.innerText = book.title;
-
-  const descriptionEl = document.createElement("div");
-  descriptionEl.className = "description";
-  descriptionEl.addEventListener("click", () => {
-    descriptionEl.classList.toggle("expanded");
-  });
-  descriptionEl.innerText = book.description;
-
-  const authorEl = document.createElement("div");
-  authorEl.className = "author";
-  authorEl.innerText = `Author: ${book.author}`;
-
-  const pagesEl = document.createElement("div");
-  pagesEl.className = "pages";
-  pagesEl.innerText = `Pages: ${book.pages}`;
-
-  const readEl = document.createElement("div");
-  readEl.className = "read";
-
-  const readInput = document.createElement("input");
-  readInput.type = "checkbox";
-  readInput.id = `read-status-${book.id}`;
-  readInput.checked = book.read;
-
-  const readLabel = document.createElement("label");
-  readLabel.innerText = book.read ? "Read" : "Not Read";
-  readLabel.setAttribute("for", `read-status-${book.id}`);
-
-  readInput.addEventListener("click", () => {
-    book.read = !book.read;
-    readLabel.innerText = book.read ? "Read" : "Not Read";
-  });
-
-  const deleteBook = document.createElement("div");
-  deleteBook.className = "delete-book";
-  deleteBook.innerText = "Delete";
-  deleteBook.addEventListener("click", () => {
-    libary.removeChild(bookCard);
-    myLibrary.splice(
-      myLibrary.findIndex((bk) => bk.id === book.id),
-      1
-    );
-  });
-
-  readEl.appendChild(readInput);
-  readEl.appendChild(readLabel);
-  aboutBook.appendChild(descriptionEl);
-  aboutBook.appendChild(authorEl);
-  aboutBook.appendChild(pagesEl);
-  aboutBook.appendChild(readEl);
-
-  bookCard.appendChild(bookImg);
-  bookCard.appendChild(titleEl);
-  bookCard.appendChild(aboutBook);
-  bookCard.appendChild(deleteBook);
-
-  libary.appendChild(bookCard);
-}
-
 function Book(title, author, pages, read, description, imgSrc) {
   if (!new.target) {
-    console.log('You must use the "new" operator to call the constructor');
+    throw new Error('You must use the "new" operator to call the constructor');
   }
   (this.title = title),
     (this.author = author),
@@ -135,14 +62,14 @@ bookForm.addEventListener("submit", (e) => {
     reader.onload = function () {
       const coverSrc = reader.result;
       addBookToTheLibrary(title, author, pages, read, description, coverSrc);
-      displayBook(myLibrary[myLibrary.length - 1]);
+      displayBook(myLibrary[myLibrary.length - 1], library);
       bookFormContainer.classList.remove("open-book-container");
     };
     reader.readAsDataURL(coverFile);
     form.reset();
   } else {
     addBookToTheLibrary(title, author, pages, read, description, "#");
-    displayBook(myLibrary[myLibrary.length - 1]);
+    displayBook(myLibrary[myLibrary.length - 1], library);
     form.reset();
     bookFormContainer.classList.remove("open-book-container");
   }
@@ -162,5 +89,5 @@ testBooks.forEach((book) => {
 
 //initial display of a library
 myLibrary.forEach((book) => {
-  displayBook(book);
+  displayBook(book, library);
 });
