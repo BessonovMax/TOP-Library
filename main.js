@@ -62,14 +62,14 @@ bookForm.addEventListener("submit", (e) => {
     reader.onload = function () {
       const coverSrc = reader.result;
       addBookToTheLibrary(title, author, pages, read, description, coverSrc);
-      displayBook(myLibrary[myLibrary.length - 1], library);
+      displayBook(myLibrary[myLibrary.length - 1], library, myLibrary);
       bookFormContainer.classList.remove("open-book-container");
     };
     reader.readAsDataURL(coverFile);
     form.reset();
   } else {
     addBookToTheLibrary(title, author, pages, read, description, "#");
-    displayBook(myLibrary[myLibrary.length - 1], library);
+    displayBook(myLibrary[myLibrary.length - 1], library, myLibrary);
     form.reset();
     bookFormContainer.classList.remove("open-book-container");
   }
@@ -89,5 +89,5 @@ testBooks.forEach((book) => {
 
 //initial display of a library
 myLibrary.forEach((book) => {
-  displayBook(book, library);
+  displayBook(book, library, myLibrary);
 });

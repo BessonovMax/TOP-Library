@@ -1,4 +1,4 @@
-export function displayBook(book, library) {
+export function displayBook(book, library, myLibrary) {
   function createElement(tag, className, parent, id, text, src, alt, type) {
     const element = document.createElement(tag);
     if (className) element.className = className;
@@ -89,7 +89,7 @@ export function displayBook(book, library) {
     "Delete"
   );
   deleteBook.addEventListener("click", () => {
-    libary.removeChild(bookCard);
+    library.removeChild(bookCard);
     myLibrary.splice(
       myLibrary.findIndex((bk) => bk.id === book.id),
       1
