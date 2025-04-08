@@ -10,7 +10,7 @@ body {
   color: #333;
   line-height: 1.6;
   min-height: 100dvh;
-  /* font-size: large; */
+  overflow-x: hidden;
   display: flex;
   gap: 2em;
   flex-direction: column;
@@ -185,20 +185,23 @@ main {
 }
 
 .book-form-container {
-  position: absolute;
+  position: fixed;
   width: 35%;
+  min-height: 100%;
   top: 0;
   border-left: 2px solid #f4f4f4;
   background-color: rgba(17, 67, 111, 0.695);
   color: #f4f4f4;
   backdrop-filter: blur(10px);
   z-index: 2;
-  right: -100%;
-  transition: right 0.5s ease-in-out;
+  right: 0;
+  transform: translateX(100%);
+  will-change: transform;
+  transition: transform 0.3s ease, opacity 0.3s;
 }
 
 .open-book-container {
-  right: 0;
+  transform: translateX(0);
 }
 
 .book-form {
@@ -230,6 +233,7 @@ label {
 
 .radio-container {
   display: flex;
+  gap: 10px;
   justify-content: space-around;
 }
 .radio-label {
@@ -249,19 +253,20 @@ input[type="file"] {
   min-height: 2rem;
   font-size: large;
   padding: 0.25em;
-  border-radius: 0.25rem;
+  border-radius: 0.4rem;
   border: none;
 }
 
 #cover {
   background-color: #424242;
+  padding: 1rem;
 }
 
 textarea {
   font-size: large;
   padding: 0.25em;
   min-height: 5rem;
-  border-radius: 0.25rem;
+  border-radius: 0.4rem;
   resize: none;
 }
 
@@ -286,5 +291,48 @@ textarea {
 @media (max-width: 600px) {
   .book-form-container {
     width: 100%;
+    border: 2px solid #f4f4f4;
+  }
+  .book-form {
+    padding: 0;
+    gap: 1rem;
+    width: 80%;
+  }
+}
+
+@media (max-width: 400px) {
+  .book-form-container {
+    width: 100%;
+    border: 2px solid #f4f4f4;
+  }
+  .radio-label {
+    font-size: large;
+  }
+  .book-form {
+    padding: 0;
+    gap: 0.3rem;
+    width: 100%;
+  }
+  .form-section {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="file"] {
+    min-width: 50%;
+    min-height: 2rem;
+    font-size: medium;
+    padding: 0.15em;
+    border-radius: 0.4rem;
+    border: none;
+  }
+
+  .add-book {
+    margin: 0 auto;
   }
 }
