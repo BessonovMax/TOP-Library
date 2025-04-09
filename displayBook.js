@@ -63,6 +63,7 @@ export function displayBook(book, library, myLibrary) {
     `read-status-${book.id}`,
     null,
     null,
+    null,
     "checkbox"
   );
   readInput.checked = book.read;
